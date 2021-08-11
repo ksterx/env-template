@@ -1,0 +1,27 @@
+version: "3"
+services:
+    dl:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: dl
+        volumes:
+            - ../:/workspace
+        ports:
+            - "8888:8888"
+            - "6006:6006"
+            - "8080:8080"
+        command: jupyter lab --ip=0.0.0.0 --allow-root
+        restart: always
+        tty: true
+    mlflow:
+        image: ksterx/mlflow:latest
+        container_name: mlflow
+        volumes:
+            - ../logs/:/workspace/logs/
+        depends_on:
+            - dl
+        ports:
+            - "5000:5000"
+        command: mlflow server --backend-store-uri sqlite:////workspace/logs/mlflow.db --default-artifact-root file:////workspace/logs --host 0.0.0.0 --port 5000
+        restart: always

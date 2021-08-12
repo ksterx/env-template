@@ -14,10 +14,13 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN pip install --upgrade pip \
     && pip install --no-cache-dir \
 
-    # PyTorch relevant
+    # Deep Learning
     pytorch-lightning==1.2.10 \
     torchinfo \
     torch-tb-profiler \
+
+    # Reinforcement Learning
+    stable-baselines[mpi] \
 
     # Hyperparameter Optimization
     optuna \
@@ -45,15 +48,18 @@ RUN pip install --upgrade pip \
     opencv-contrib-python \
 
     # JupyterLab
-    "jupyterlab-kite>=2.0.2" \
+    # "jupyterlab-kite>=2.0.2" \  # Now kite is not available on Apple Silicon
+    theme-darcula \
+    ipywidgets \
+    jupytext \
     jupyterlab-git \
     jupyter-lsp \
     nbresuse \
-    'python-language-server[all]' \
+    'python-lsp-server[all]' \
+    lckr-jupyterlab-variableinspector \
     ipympl
 
-RUN conda install -y -q ipywidgets \
-    && conda install -y -q xeus-python -c conda-forge
+RUN conda install -y -q xeus-python -c conda-forge
 
 RUN apt-get update \
     && apt-get install -y nodejs npm \

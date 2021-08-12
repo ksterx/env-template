@@ -50,16 +50,16 @@ RUN pip install --upgrade pip \
     # JupyterLab
     # "jupyterlab-kite>=2.0.2" \  # Now kite is not available on Apple Silicon
     theme-darcula \
-    ipywidgets \
-    jupytext \
-    jupyterlab-git \
-    jupyter-lsp \
-    nbresuse \
-    'python-lsp-server[all]' \
-    lckr-jupyterlab-variableinspector \
-    ipympl
+    ipywidgets
+# jupytext \
+# jupyterlab-git \
+# jupyter-lsp \
+# nbresuse \
+# 'python-lsp-server[all]' \
+# lckr-jupyterlab-variableinspector \
+# ipympl
 
-RUN conda install -y -q xeus-python -c conda-forge
+# RUN conda install -y -q xeus-python -c conda-forge
 
 RUN apt-get update \
     && apt-get install -y nodejs npm \

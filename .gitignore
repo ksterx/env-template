@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Personal Settings
+.Trash-0/
+.ipynb_checkpoints/
+.DS_Store
+
